@@ -4,17 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clock Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container">
-        <div class="form-control">
-            <label for="clock-in">Clock in:</label>
-            <input type="time" name="clock-in" />
-        </div>
-        <div class="form-control">
-            <label for="clock-out">Clock Out:</label>
-            <input type="time" name="clock-out" />
+        <div class="time-block">
+            <div class="form-control">
+                <label for="clock-in">Clock in:</label>
+                <input type="time" name="clock-in" />
+                <button class="time-punch">Time</button>
+            </div>
+            <div class="form-control">
+                <label for="clock-out">Clock Out:</label>
+                <input type="time" name="clock-out" />
+                <button class="time-punch">Time</button>
+            </div>
         </div>
     </div>
+
+    <script src='js/app.js'></script>
 </body>
 </html>
