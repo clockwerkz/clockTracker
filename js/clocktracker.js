@@ -11,7 +11,7 @@ let startOfDay = null;
 workBtn.addEventListener("click", e=> {
   let currentStatus = workBtn.textContent.trim();
   let currentTime = new Date();
-  currentTime = currentTime.getHours() + ":" + (currentTime.getMinutes() < 10 ?"0" +  currentTime.getMinutes() : currentTime.getMinutes());
+  currentTime = (currentTime.getHours() < 10 ? "0" + currentTime.getHours():currentTime.getHours()) + ":" + (currentTime.getMinutes() < 10 ?"0" +  currentTime.getMinutes() : currentTime.getMinutes());
   if (currentStatus === "Clock in") {
     if (data.length === 0) {
       //first check in
