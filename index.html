@@ -7,21 +7,18 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="container">
+    <div id="time-sheet" class="hide">
         <div class="time-block">
-            <div class="form-control">
-                <label for="clock-in">Clock in:</label>
-                <input type="time" name="clock-in" />
-                <button class="time-punch">Time</button>
-            </div>
-            <div class="form-control">
-                <label for="clock-out">Clock Out:</label>
-                <input type="time" name="clock-out" />
-                <button class="time-punch">Time</button>
-            </div>
+          <input class="start-time" type="time" />
+          <input class="end-time" type="time" />
         </div>
-    </div>
-
-    <script src='js/app.js'></script>
+      </div>
+      <div id="clock-buttons">
+        <h1>Day Started: <span id="day-start"></span></h1>
+        <h1>Clock out time: <span id="out-time"></span></h1>
+        <button id="work" class="btn">Clock in</button>
+      </div>
+        <button id="timesheet" class="btn btn--yellow">Edit Timesheet</button>
+    <script src='js/clocktracker.js'></script>
 </body>
 </html>
