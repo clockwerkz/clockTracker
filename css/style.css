@@ -21,7 +21,7 @@ h1:nth-child(2) {
   margin-bottom: 1rem;
 }
 .container {
-  width: 400px;
+  max-width: 400px;
   margin: 1rem auto;
   border: 3px solid yellow;
   padding: 1rem;
@@ -48,6 +48,13 @@ input {
     margin: 0.25rem auto;
     padding: 0.25rem;
     border: 1px solid #ddd;
+    position: relative;
+    border: 3px solid transparent;
+  }
+
+  .time-block.del {
+    background-color: salmon;
+    border: 3px solid red;
   }
 
   span {
@@ -73,6 +80,22 @@ input {
     background-color: green;
     color: white;
   }
+
+  .btn-delete {
+    position: absolute;
+    right: 3px;
+    top: 1px;
+    padding: 2px;
+    color: #bbb;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-delete:hover {
+    background-color: red;
+    color: white;
+  }
+  
   
   .btn--yellow {
     background-color: goldenrod;
@@ -82,4 +105,16 @@ input {
     background-color: lightgreen;
     color: rgb(3, 105, 11);
     font-weight: bold;
+  }
+
+  @media screen and (max-width: 425px) {
+    .container {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 300px) {
+    h1 {
+      font-size: 1rem;
+    }
   }

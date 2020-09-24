@@ -28,11 +28,21 @@ workBtn.addEventListener("click", e=> {
   workBtn.classList.toggle('green');
 });
 
-// timeSheet.addEventListener("mouseover", (e)=> {
-//   if (e.target.tagName=="DIV") {
-//     console.log("div");
-//   }
-// });
+timeSheet.addEventListener("mouseover", (e)=> {
+  if (e.target.classList && e.target.classList.contains("btn-delete")) {
+    let div = e.target.parentNode;
+    div.classList.toggle("del");
+  }
+});
+
+timeSheet.addEventListener("mouseout", (e)=> {
+  if (e.target.classList && e.target.classList.contains("btn-delete")) {
+    let div = e.target.parentNode;
+    div.classList.remove("del");
+  }
+});
+
+
 
 timeSheetBtn.addEventListener("click", ()=>{
   let currentStatus = timeSheetBtn.textContent;
@@ -78,7 +88,8 @@ function renderSheet() {
   let textContent = '';
   data.forEach(entry => {
     textContent += `<div class="time-block">
-  <label for="time-in">In:</label><input class="start-time" type="time" name="time-in" value="${entry.in}"/>`;
+    <button class="btn-delete">X</button>
+  <label for="time-in" class="time-in-label">In:</label><input class="start-time" type="time" name="time-in" value="${entry.in}"/>`;
   if (entry.out !== null) {
     textContent += `<label for="time-out">Out:</label><input class="end-time" name="time-out" type="time" value="${entry.out}"/>`;
   } else {
@@ -93,7 +104,7 @@ function renderSheet() {
 function endOfDay(complete=false) {
   let outTime = document.getElementById("out-time");
   if (!complete) {
-    outTime.textContent = '--:--';
+    outTime.textContent = 'Break';
     return;
   }
   let totalMinWorked = data.reduce((acc, time) => time.out ? calculateTimeBlock(time.in, time.out) + acc : acc, 0);
