@@ -97,6 +97,13 @@ function renderSheet() {
   }
   textContent+=`</div>`;
   })
+  textContent += `<div class="add-entry">Add New Entry</div>`;
+  let currentTime = new Date();
+  currentTime = (currentTime.getHours() < 10 ? "0" + currentTime.getHours():currentTime.getHours()) + ":" + (currentTime.getMinutes() < 10 ?"0" +  currentTime.getMinutes() : currentTime.getMinutes());
+  textContent += `<div class="add-time-block">
+  <label for="time-in" class="time-in-label">In:</label><input class="start-time" type="time" name="time-in" value="${currentTime}"/>
+  <label for="time-out">Out:</label><input class="end-time" name="time-out" type="time" />
+  </div>`
   document.getElementById('time-sheet').innerHTML = textContent;
 }
 

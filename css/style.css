@@ -40,16 +40,31 @@ input {
     border: none;
   }
   
-  .time-block {
+  .time-block, .add-time-block {
     background-color: #bbb;
     display: flex;
     flex-direction: column;
     width: 80%;
-    margin: 0.25rem auto;
+    margin: 0.25rem auto 0;
     padding: 0.25rem;
     border: 1px solid #ddd;
     position: relative;
     border: 3px solid transparent;
+  }
+
+  .add-time-block {
+    margin-top: 0;
+    color: green;
+    background-color: lightgreen;
+    border-color: green;
+  }
+  .add-time-block > input {
+    background-color: rgb(95, 209, 114);
+    color: rgb(185, 238, 160);
+  }
+
+  .add-time-block.show {
+    display: block;
   }
 
   .time-block.del {
@@ -57,6 +72,13 @@ input {
     border: 3px solid red;
   }
 
+  .add-entry {
+    background-color: #bbb;
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2px 0;
+  }
   span {
     color: white;
     font-weight: bold;
