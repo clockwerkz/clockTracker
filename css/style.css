@@ -40,103 +40,121 @@ input {
     border: none;
   }
   
-  .time-block, .add-time-block {
-    background-color: #bbb;
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    margin: 0.25rem auto 0;
-    padding: 0.25rem;
-    border: 1px solid #ddd;
-    position: relative;
-    border: 3px solid transparent;
-  }
+.time-block, .add-time-block {
+  background-color: #bbb;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0.25rem auto 0;
+  padding: 0.25rem;
+  border: 1px solid #ddd;
+  position: relative;
+  border: 3px solid transparent;
+}
 
-  .add-time-block {
-    margin-top: 0;
-    color: green;
-    background-color: lightgreen;
-    border-color: green;
-  }
-  .add-time-block > input {
-    background-color: rgb(95, 209, 114);
-    color: rgb(185, 238, 160);
-  }
+.add-time-block {
+  width: 100%;
+  margin-top: 0;
+  color: green;
+  background-color: lightgreen;
+  border-color: green;
+  display: none;
+  cursor: pointer;
+}
 
-  .add-time-block.show {
-    display: block;
-  }
+.add-time-block > input {
+  background-color: rgb(95, 209, 114);
+  color: rgb(185, 238, 160);
+  cursor: pointer;
+}
 
-  .time-block.del {
-    background-color: salmon;
-    border: 3px solid red;
-  }
+.add-time-block > label {
+  cursor: pointer;
+}
 
-  .add-entry {
-    background-color: #bbb;
-    width: 80%;
-    margin: 0 auto;
-    text-align: center;
-    padding: 2px 0;
-  }
-  span {
-    color: white;
-    font-weight: bold;
-  }
-  
-  #clock-buttons.hide, .hide {
-    display: none;
-  }
-  
-  .clock-buttons {
-    width: 20%;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .btn {
-    padding: 0.5rem;
-    border: none;
-    margin: 0.25rem 0;
-    border-radius: 4px;
-    background-color: green;
-    color: white;
-  }
+.time-block.del {
+  background-color: salmon;
+  border: 3px solid red;
+}
 
-  .btn-delete {
-    position: absolute;
-    right: 3px;
-    top: 1px;
-    padding: 2px;
-    color: #bbb;
-    border: none;
-    cursor: pointer;
-  }
+.add-entry {
+  background-color: #bbb;
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  cursor: pointer;
+}
 
-  .btn-delete:hover {
-    background-color: red;
-    color: white;
-  }
-  
-  
-  .btn--yellow {
-    background-color: goldenrod;
-  }
+.add-entry p {
+  padding: 2px 0;
+}
 
-  .green {
-    background-color: lightgreen;
-    color: rgb(3, 105, 11);
-    font-weight: bold;
-  }
+.add-entry:hover p {
+  display: none;
+}
 
-  @media screen and (max-width: 425px) {
-    .container {
-      width: 100%;
-    }
-  }
+.add-entry:hover .add-time-block {
+  display: flex;
+}
 
-  @media screen and (max-width: 300px) {
-    h1 {
-      font-size: 1rem;
-    }
+span {
+  color: white;
+  font-weight: bold;
+}
+
+#clock-buttons.hide, .hide {
+  display: none;
+}
+
+.clock-buttons {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn {
+  padding: 0.5rem;
+  border: none;
+  margin: 0.25rem 0;
+  border-radius: 4px;
+  background-color: green;
+  color: white;
+}
+
+.btn-delete {
+  position: absolute;
+  right: 3px;
+  top: 1px;
+  padding: 2px;
+  color: #bbb;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  background-color: red;
+  color: white;
+}
+
+
+.btn--yellow {
+  background-color: goldenrod;
+}
+
+.green {
+  background-color: lightgreen;
+  color: rgb(3, 105, 11);
+  font-weight: bold;
+}
+
+@media screen and (max-width: 425px) {
+  .container {
+    width: 100%;
   }
+}
+
+@media screen and (max-width: 300px) {
+  h1 {
+    font-size: 1rem;
+  }
+}
