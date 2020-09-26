@@ -1,34 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #111;
+  color: #efefef;
+  font-family: 'Lato', sans-serif;
+}
+h1 {
+  font-weight: normal;
+  color: #ddd;
+  display: flex;
+  justify-content: space-between;
+}
+h1:nth-child(2) {
+  margin-bottom: 1rem;
+}
+.container {
+  max-width: 400px;
+  margin: 1rem auto;
+  border: 3px solid yellow;
+  padding: 1rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+#clock-buttons {
+  display: flex;
+  flex-direction: column;
+}
 input {
     margin: 0;
     padding: 0;
     background-color: #efefdf;
-  }
-  
-  .time-block {
-    background-color: #bbb;
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-  }
-  
-  .hide {
-    display: none;
-  }
-  
-  .clock-buttons {
-    width: 20%;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .btn {
-    padding: 0.5rem;
     border: none;
-    margin: 0.25rem 0;
-    border-radius: 4px;
-    background-color: green;
   }
   
-  .btn--yellow {
-    background-color: goldenrod;
+.time-block, .add-time-block {
+  background-color: #bbb;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0.25rem auto 0;
+  padding: 0.25rem;
+  border: 1px solid #ddd;
+  position: relative;
+  border: 3px solid transparent;
+}
+
+.add-time-block {
+  width: 100%;
+  margin-top: 0;
+  color: green;
+  background-color: lightgreen;
+  border-color: green;
+  display: none;
+  cursor: pointer;
+}
+
+.add-time-block > input {
+  background-color: rgb(95, 209, 114);
+  color: rgb(185, 238, 160);
+  cursor: pointer;
+}
+
+.add-time-block > label {
+  cursor: pointer;
+}
+
+.time-block.del {
+  background-color: salmon;
+  border: 3px solid red;
+}
+
+.add-entry {
+  background-color: #bbb;
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  cursor: pointer;
+}
+
+.add-entry p {
+  padding: 2px 0;
+}
+
+.add-entry:hover p {
+  display: none;
+}
+
+.add-entry:hover .add-time-block {
+  display: flex;
+}
+
+span {
+  color: white;
+  font-weight: bold;
+}
+
+#clock-buttons.hide, .hide {
+  display: none;
+}
+
+.clock-buttons {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn {
+  padding: 0.5rem;
+  border: none;
+  margin: 0.25rem 0;
+  border-radius: 4px;
+  background-color: green;
+  color: white;
+}
+
+.btn-delete {
+  position: absolute;
+  right: 3px;
+  top: 1px;
+  padding: 2px;
+  color: #bbb;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  background-color: red;
+  color: white;
+}
+
+
+.btn--yellow {
+  background-color: goldenrod;
+}
+
+.green {
+  background-color: lightgreen;
+  color: rgb(3, 105, 11);
+  font-weight: bold;
+}
+
+@media screen and (max-width: 425px) {
+  .container {
+    width: 100%;
   }
+}
+
+@media screen and (max-width: 300px) {
+  h1 {
+    font-size: 1rem;
+  }
+}
