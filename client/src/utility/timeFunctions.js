@@ -1,41 +1,27 @@
 
-workBtn.addEventListener("click", e=> {
-  let currentStatus = workBtn.textContent.trim();
+function buttonText(currentStatus) {
   let currentTime = new Date();
   currentTime = (currentTime.getHours() < 10 ? "0" + currentTime.getHours():currentTime.getHours()) + ":" + (currentTime.getMinutes() < 10 ?"0" +  currentTime.getMinutes() : currentTime.getMinutes());
   if (currentStatus === "Clock in") {
     if (data.length === 0) {
       //first check in
-      document.getElementById("day-start").textContent = currentTime;
+      return currentTime;
     }
-    data.push({in:currentTime, out: "" });
-    endOfDay(true);
-    workBtn.textContent = "Clock out";
+    //data.push({in:currentTime, out: "" });
+    //endOfDay(true);
+    // workBtn.textContent = "Clock out";
   } else {
-    data[data.length-1].out = currentTime;
+    //data[data.length-1].out = currentTime;
     endOfDay();
-    workBtn.textContent = "Clock in";
+    //workBtn.textContent = "Clock in";
   }
-  workBtn.classList.toggle('green');
-});
-
-timeSheet.addEventListener("mouseover", (e)=> {
-  if (e.target.classList && e.target.classList.contains("btn-delete")) {
-    let div = e.target.parentNode;
-    div.classList.toggle("del");
-  }
-});
-
-timeSheet.addEventListener("mouseout", (e)=> {
-  if (e.target.classList && e.target.classList.contains("btn-delete")) {
-    let div = e.target.parentNode;
-    div.classList.remove("del");
-  }
-});
+  //workBtn.classList.toggle('green');
+}
 
 
 
-timeSheetBtn.addEventListener("click", ()=>{
+
+function timeButton() {
   let currentStatus = timeSheetBtn.textContent;
   if (currentStatus === "Edit Timesheet") {
     if (data) renderSheet(data);
@@ -51,7 +37,7 @@ timeSheetBtn.addEventListener("click", ()=>{
   }
     timeSheet.classList.toggle("hide");
     clockButtons.classList.toggle("hide");
-});
+};
 
 function renderTimes() {
   if (data.length == 0) return;
@@ -99,31 +85,27 @@ function renderSheet() {
 }
 
 
-function endOfDay(complete=false) {
-  let outTime = document.getElementById("out-time");
-  if (!complete) {
-    outTime.textContent = 'Break';
-    return;
-  }
+
+export function endOfDay(data) {
   let totalMinWorked = data.reduce((acc, time) => time.out ? calculateTimeBlock(time.in, time.out) + acc : acc, 0);
   let timeRemaining = 8 * 60 - totalMinWorked;
   if (timeRemaining < 0) console.log("Over 8 hours");
-  outTime.textContent = calculateClockOutTime(data[data.length-1].in, timeRemaining);
+  return calculateClockOutTime(data[data.length-1].in, timeRemaining);
 }
 
-function calculateMinutes(time) {
+export function calculateMinutes(time) {
   //TODO: test input with regex
   let [hour, min] = time.split(":").map(val => parseInt(val));
   return hour*60 + min;
 }
   
-function calculateTimeBlock(startTime, endTime) {
+export function calculateTimeBlock(startTime, endTime) {
   const start = calculateMinutes(startTime);
   const end = calculateMinutes(endTime);
   return end - start;
 }
 
-function calculateClockOutTime(startTime, minutesUntil) {
+export function calculateClockOutTime(startTime, minutesUntil) {
   let [hour, min] = startTime.split(":").map(val => parseInt(val));
   min += minutesUntil;
   hour += Math.floor(min / 60);
