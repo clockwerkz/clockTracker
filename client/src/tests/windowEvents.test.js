@@ -19,7 +19,7 @@ describe('Testing Focus Window Event function:', ()=>{
         expect(startDate.getHours()).toBe(new Date().getHours() - 1);
         expect(res).toBe(60);
     })
-    test("it should accept a time 30 min in the past and return 30 min", ()=>{
+    test("it should accept a time 30 minutes in the past return 30 min", ()=>{
         const startDate = new Date();
         if (startDate.getMinutes() < 30) {
             let currentMinutes = startDate.getMinutes();
@@ -31,5 +31,12 @@ describe('Testing Focus Window Event function:', ()=>{
         }
         const res = onFocus(startDate);
         expect(res).toBe(30);
+    })
+    test("it should accept a time at the start of the hour and return the current minutes of the hour", ()=>{
+        const startDate = new Date();
+        let currentMinutes = startDate.getMinutes();
+        startDate.setMinutes(currentMinutes - currentMinutes);
+        const res = onFocus(startDate);
+        expect(res).toBe(currentMinutes);
     })
 })
