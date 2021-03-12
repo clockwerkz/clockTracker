@@ -1,40 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import TimeButton from './components/TimeButtons';
-import { onBlur, onFocus } from './utility/windowEvents';
+import TimeEntry from './components/TimeEntry';
+import InputTime from './components/InputTime';
+import { calculateClockOutTime } from './utility/timeFunctions';
+
 function App() {
   const [clockedIn, setClockedIn] = useState(false);
-  const [ timeBank, setTimeBank ] = useState([{in: "10:30", out: "11:30"}]);
-  const [ timeBlurred, setTimeBlurred ] = useState(new Date());
-  const [timeInteval, setTimeInterval] = useState(0);
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    setTimeInterval(setInterval(()=>{
-      setCount(prevTime => prevTime + 1);
-    }, 1000));
-    //window.addEventListener('focus', onFocus);
-    //window.addEventListener('blur', onBlur);
-    // Specify how to clean up after this effect:
-    return () => {
-      //window.removeEventListener('focus', onFocus);
-      //window.removeEventListener('blur', onBlur);
-      console.log("Clearing time Interval:");
-      clearInterval(timeInteval);
-      setTimeInterval(0);
-    };
-  },[]);
+  const [ timeBank, setTimeBank ] = useState([{start: "10:30", end: "11:30"}]);
+  const [ totalMinutes, setTotalMinutes ] = useState(480);
+  const [addingTime, setAddingTime ] = useState(false);
 
-  useEffect(()=>{
-    console.log(count);
-  },[count])
+  const editTime = (idx, start, end) => {
+    setTimeBank(timeBank.map((time, i)=> idx !== i ? time : { start, end }  ));
+  }
+
+  const addTime = (start, end) => {
+    setTimeBank(timeBank.concat([{ start, end }]));
+  }
+
 
    return (
     <div className="App">
       <h1>Timebank</h1>
-      {timeBank.length > 0 ? (timeBank.map((entry, index)=><p key={index}>
-        <input type="time" value={entry.in} />
-        <input type="time" value={entry.out} />
-      </p>)):
+      <h2>8 Hour shift: {calculateClockOutTime(timeBank[0].end, totalMinutes)}</h2>
+      {timeBank.length > 0 ? (timeBank.map((entry, index)=><div key={index}>
+        <TimeEntry {...entry} idx={index} editTime={editTime}/>
+      </div>)):
       ("")}
+      {addingTime ? 
+        (<div>
+            <InputTime />
+            <p onClick={()=>setAddingTime(!addingTime)}>Add Time here</p>
+         </div>)
+        :
+        (<button onClick={()=>setAddingTime(!addingTime)}>Add Time</button>)
+      }
       <TimeButton clockedIn={clockedIn} setClockedIn={setClockedIn} />
     </div>
   );
