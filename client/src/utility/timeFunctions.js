@@ -20,8 +20,8 @@ export function calculateTimeBlock(startTime, endTime) {
 
 export function isValidTime(startTime, endTime) {
   let [startHour, startMin] = startTime.split(":").map(val => parseInt(val));
-  let [endHour, endMin] = startTime.split(":").map(val => parseInt(val));
-  if (endHour < startHour) return false;
+  let [endHour, endMin] = endTime.split(":").map(val => parseInt(val));
+  if (endHour > startHour) return true;
   if (endHour == startHour) {
     if (endMin > startMin) return true;
   } 
