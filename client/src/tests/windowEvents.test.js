@@ -1,11 +1,11 @@
 import { onBlur, onFocus } from '../utility/windowEvents';
 
 describe('Testing Blur Window Event function:', ()=>{
-    test.skip("it should return a Date object", ()=>{
+    test("it should return a Date object", ()=>{
         const res = onBlur();
         expect(typeof res).toBe('object');
     })
-    test.skip("it should return the current time", ()=>{
+    test("it should return the current time", ()=>{
         const res = onBlur();
         expect(res).toStrictEqual(new Date());
     })

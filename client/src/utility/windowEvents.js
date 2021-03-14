@@ -1,6 +1,6 @@
 export const onBlur = () => {
     console.log("blurring:", new Date())
-    //return new Date();
+    return new Date();
 }
 
 export const onFocus = (startDate) => {

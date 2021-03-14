@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import TimeButton from './components/TimeButtons';
-import TimeEntry from './components/TimeEntry';
-import InputTime from './components/InputTime';
+import TimeSheet from './components/TimeSheet';
 import { calculateClockOutTime } from './utility/timeFunctions';
 
 function App() {
   const [clockedIn, setClockedIn] = useState(false);
   const [ timeBank, setTimeBank ] = useState([{start: "10:30", end: "11:30"}]);
   const [ totalMinutes, setTotalMinutes ] = useState(480);
-  const [addingTime, setAddingTime ] = useState(false);
+  
+  const [inEditMode, setInEditMode ] = useState(false);
 
-  const editTime = (idx, start, end) => {
+  const editTimeBlock = (idx, start, end) => {
     setTimeBank(timeBank.map((time, i)=> idx !== i ? time : { start, end }  ));
   }
 
@@ -18,23 +18,15 @@ function App() {
     setTimeBank(timeBank.concat([{ start, end }]));
   }
 
-
    return (
     <div className="App">
-      <h1>Timebank</h1>
       <h2>8 Hour shift: {calculateClockOutTime(timeBank[0].end, totalMinutes)}</h2>
-      {timeBank.length > 0 ? (timeBank.map((entry, index)=><div key={index}>
-        <TimeEntry {...entry} idx={index} editTime={editTime}/>
-      </div>)):
-      ("")}
-      {addingTime ? 
-        (<div>
-            <InputTime />
-            <p onClick={()=>setAddingTime(!addingTime)}>Add Time here</p>
-         </div>)
-        :
-        (<button onClick={()=>setAddingTime(!addingTime)}>Add Time</button>)
+      {inEditMode ? 
+        (<TimeSheet timeBank={timeBank} editTime={editTimeBlock} />)
+          :
+        ("")
       }
+      <button onClick={()=>setInEditMode(!inEditMode)}>{inEditMode ? "Close" : "Edit Times"}</button>
       <TimeButton clockedIn={clockedIn} setClockedIn={setClockedIn} />
     </div>
   );

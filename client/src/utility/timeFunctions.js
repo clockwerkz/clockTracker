@@ -38,3 +38,13 @@ export function calculateClockOutTime(startTime, minutesUntil) {
   if (hour < 10) hour = "0" + hour;
   return hour + ":" + min;
 }
+
+//data: [{start: "10:30", end: "11:30"}]
+export function validatedTimeSheet(timeBank) {
+  if (!timeBank) return true; //empty timesheet is valid? 
+  for (let i=0; i < timeBank.length - 1; i++) {
+    const { start, end } = timeBank[i];
+    if (!start || !end) return false;
+  }
+  return true;
+}
