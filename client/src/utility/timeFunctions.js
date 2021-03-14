@@ -40,11 +40,13 @@ export function calculateClockOutTime(startTime, minutesUntil) {
 }
 
 //data: [{start: "10:30", end: "11:30"}]
-export function validatedTimeSheet(timeBank) {
-  if (!timeBank) return true; //empty timesheet is valid? 
+export function validateTimeSheet(timeBank) {
+  if (timeBank.length === 0) return true; //empty timesheet is valid? 
   for (let i=0; i < timeBank.length - 1; i++) {
     const { start, end } = timeBank[i];
     if (!start || !end) return false;
   }
+  const lastEntry = timeBank[timeBank.length - 1];
+  if (!lastEntry.start && lastEntry.end) return false;
   return true;
 }

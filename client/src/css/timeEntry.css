@@ -1,0 +1,24 @@
+.time-entry {
+    position: relative;
+    display: flex;
+    border: 1px solid black;
+}
+
+.time-entry:hover .btn--add-entry {
+    display: block;
+}
+
+.btn--add-entry {
+    position: abolute;
+    right: 0px;
+    top: 0px;
+    display: none;
+    background-color: salmon;
+    cursor: pointer;
+}
+
+
+.time-entry__row {
+    display: flex;
+    flex-direction: column;
+}

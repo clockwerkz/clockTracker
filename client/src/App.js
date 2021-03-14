@@ -5,7 +5,7 @@ import { calculateClockOutTime } from './utility/timeFunctions';
 
 function App() {
   const [clockedIn, setClockedIn] = useState(false);
-  const [ timeBank, setTimeBank ] = useState([{start: "10:30", end: "11:30"}]);
+  const [ timeBank, setTimeBank ] = useState([{start: "10:30", end: "11:30"}, {start: "13:00", end:"15:00"}]);
   const [ totalMinutes, setTotalMinutes ] = useState(480);
   
   const [inEditMode, setInEditMode ] = useState(false);
@@ -22,7 +22,7 @@ function App() {
     <div className="App">
       <h2>8 Hour shift: {calculateClockOutTime(timeBank[0].end, totalMinutes)}</h2>
       {inEditMode ? 
-        (<TimeSheet timeBank={timeBank} editTime={editTimeBlock} />)
+        (<TimeSheet timeBank={timeBank} editTimeBlock={editTimeBlock} />)
           :
         ("")
       }
