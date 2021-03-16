@@ -21,11 +21,11 @@ const TimeBank = ({ start, end, idx, editTimeBlock  }) => {
     return (
         <div className="time-entry">
             <div className="time-entry__row">
-                <label for="time-entry__start">Start:</label> 
+                <label htmlFor="time-entry__start">Start:</label> 
                 <input type="time" className="time-entry__start" value={startTime} onChange={updateStartTime} />
             </div>
             <div className="time-entry__row">
-                <label for="time-entry__end">End:</label>
+                <label htmlFor="time-entry__end">End:</label>
                 <input type="time" className="time-entry__end" value={endTime} onChange={updateEndTime}/>
             </div>
             <button className="btn btn--add-entry" onClick={()=>{}}>-</button>

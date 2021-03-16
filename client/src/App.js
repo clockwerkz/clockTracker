@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import TimeSheetContextProvider from './contexts/TimeSheetContext';
 import TimeButton from './components/TimeButtons';
 import TimeSheet from './components/TimeSheet';
 import { calculateClockOutTime } from './utility/timeFunctions';
@@ -17,18 +18,19 @@ function App() {
   const addTime = (start, end) => {
     setTimeBank(timeBank.concat([{ start, end }]));
   }
-
    return (
-    <div className="App">
-      <h2>8 Hour shift: {calculateClockOutTime(timeBank[0].end, totalMinutes)}</h2>
-      {inEditMode ? 
-        (<TimeSheet timeBank={timeBank} editTimeBlock={editTimeBlock} />)
-          :
-        ("")
-      }
-      <button onClick={()=>setInEditMode(!inEditMode)}>{inEditMode ? "Close" : "Edit Times"}</button>
-      <TimeButton clockedIn={clockedIn} setClockedIn={setClockedIn} />
-    </div>
+     <TimeSheetContextProvider>
+      <div className="App">
+        <h2>8 Hour shift: {calculateClockOutTime(timeBank[0].end, totalMinutes)}</h2>
+        {inEditMode ? 
+          (<TimeSheet timeBank={timeBank} editTimeBlock={editTimeBlock} />)
+            :
+          ("")
+        }
+        <button onClick={()=>setInEditMode(!inEditMode)}>{inEditMode ? "Close" : "Edit Times"}</button>
+        <TimeButton clockedIn={clockedIn} setClockedIn={setClockedIn} />
+      </div>
+    </TimeSheetContextProvider>
   );
 }
 
