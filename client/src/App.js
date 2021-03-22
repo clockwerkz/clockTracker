@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import TimeSheetContextProvider from './contexts/TimeSheetContext';
 import TimeButton from './components/TimeButtons';
 import TimeSheet from './components/TimeSheet';
+import TimeDisplay from './components/TimeDisplay';
 import { calculateClockOutTime } from './utility/timeFunctions';
+
 
 function App() {
   const [clockedIn, setClockedIn] = useState(false);
@@ -21,6 +23,7 @@ function App() {
    return (
      <TimeSheetContextProvider>
       <div className="App">
+        <TimeDisplay />
         <h2>8 Hour shift: {calculateClockOutTime(timeBank[0].end, totalMinutes)}</h2>
         {inEditMode ? 
           (<TimeSheet timeBank={timeBank} editTimeBlock={editTimeBlock} />)

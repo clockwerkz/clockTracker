@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 export const TimeSheetContext = createContext();
 
@@ -7,9 +7,31 @@ const TimeSheetContextProvider = ({ children }) => {
         {start: "10:30", end: "11:30"}, 
         {start: "13:00", end:"15:00"}
     ]);
+    const [ timer, setTimer ] = useState(null);
+    const [ counter, setCounter ] = useState(1);
+    const [ isCounting, setIsCounting ] = useState(false);
+
+    useEffect(()=>{
+       startCounter();
+    },[])
+
+    function startCounter() {
+        clearInterval(timer);
+        const newTimer = setInterval(()=>{
+            console.log("Time tick");
+            setCounter(counter => counter + 1)
+        }, 60000);
+        setTimer(newTimer);
+    }
+
+    function stopCounter() {
+        clearInterval(timer);
+        setTimer(null);
+    }
+
 
     return (
-        <TimeSheetContext.Provider value={{ timeBank }}>
+        <TimeSheetContext.Provider value={{ timeBank, counter }}>
             {children}
         </TimeSheetContext.Provider>
     );
