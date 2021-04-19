@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div id="time-sheet" class="hide">
+        <div class="time-block">
+          <input class="start-time" type="time" />
+          <input class="end-time" type="time" />
+        </div>
+      </div>
+      <div id="clock-buttons">
+        <h1>Day Started: <span id="day-start"></span></h1>
+        <h1>Clock out time: <span id="out-time"></span></h1>
+        <button id="work" class="btn">Clock in</button>
+      </div>
+        <button id="timesheet" class="btn btn--yellow">Edit Timesheet</button>
+    </div>
+    <script src='js/clocktracker.js'></script>
+</body>
+</html>
