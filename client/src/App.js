@@ -10,12 +10,13 @@ function App() {
   const [clockedIn, setClockedIn] = useState(false);
   const [ timeBank, setTimeBank ] = useState([{start: "10:30", end: "11:30"}, {start: "13:00", end:"15:00"}]);
   const [ totalMinutes, setTotalMinutes ] = useState(480);
-  
   const [inEditMode, setInEditMode ] = useState(false);
 
   const editTimeBlock = (idx, start, end) => {
     setTimeBank(timeBank.map((time, i)=> idx !== i ? time : { start, end }  ));
   }
+
+
 
   const addTime = (start, end) => {
     setTimeBank(timeBank.concat([{ start, end }]));

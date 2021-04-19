@@ -11,16 +11,12 @@ const TimeSheetContextProvider = ({ children }) => {
     const [ counter, setCounter ] = useState(1);
     const [ isCounting, setIsCounting ] = useState(false);
 
-    useEffect(()=>{
-       startCounter();
-    },[])
-
     function startCounter() {
         clearInterval(timer);
         const newTimer = setInterval(()=>{
             console.log("Time tick");
             setCounter(counter => counter + 1)
-        }, 60000);
+        }, 1000);
         setTimer(newTimer);
     }
 
@@ -29,9 +25,16 @@ const TimeSheetContextProvider = ({ children }) => {
         setTimer(null);
     }
 
+    function toggleCounter() {
+        if (timer === null) {
+            return startCounter();
+        }
+        return stopCounter();
+    }
+
 
     return (
-        <TimeSheetContext.Provider value={{ timeBank, counter }}>
+        <TimeSheetContext.Provider value={{ timeBank, counter, toggleCounter, timer }}>
             {children}
         </TimeSheetContext.Provider>
     );
